@@ -1,0 +1,32 @@
+body {
+  font: 100%/1.5 system-ui, sans-serif;
+  display: flex;
+  flex-flow: column;
+  max-width: 80em;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 1em;
+}
+
+header {
+  align-self: stretch;
+  display: flex;
+  gap: 1em;
+  align-items: baseline;
+}
+
+header label {
+  margin-left: auto;
+}
+
+/* time and em on their own lines so the header doesnt jump around when you drag */
+header time,
+header em {
+  display: block;
+}
+
+header em {
+  color: gray;
+  font-style: italic;
+}

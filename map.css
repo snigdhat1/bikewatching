@@ -1,0 +1,75 @@
+html,
+body {
+  margin: 0;
+  padding: 5px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* the svg sits on top of the map but lets clicks go through so you can still drag the map */
+#map svg {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* shared colors for the circles and the legend */
+#map circle,
+.legend > div {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+    in oklch,
+    var(--color-departures) calc(100% * var(--departure-ratio)),
+    var(--color-arrivals)
+  );
+}
+
+#map circle {
+  fill: var(--color);
+  fill-opacity: 0.6;
+  stroke: white;
+  stroke-width: 1;
+  /* turn pointer events back on just for circles so the tooltips work */
+  pointer-events: auto;
+}
+
+/* legend design 2: little swatches next to each label */
+.legend {
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+  margin-block: 1em;
+}
+
+.legend::before {
+  content: 'Legend:';
+  color: gray;
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.legend > div::before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: var(--color);
+}
